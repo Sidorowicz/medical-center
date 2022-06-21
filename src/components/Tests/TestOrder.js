@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Alert, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { addPatienttest } from '../../api/patienttestapi';
 const TestOrder = () => {
     const axios = require('axios');
     const [open,setOpen]=useState(false)
@@ -67,8 +68,6 @@ const TestOrder = () => {
           setAgree("false")
             console.log(error);
         });
-      console.log(agree)
-      console.log(event.target.value)
       setPatient(event.target.value);
     };
 
@@ -80,15 +79,7 @@ const TestOrder = () => {
 
     const handleSubmit = (event) => {
       {selectedTest && selectedPatient ? 
-        axios.post('http://localhost:5000/patienttest', {
-          patient_id:selectedPatient,
-          test_id:selectedTest,
-          completed:"false"
-        }).then(resp => {
-            console.log(resp.data);
-        }).catch(error => {
-            console.log(error);
-        })
+        addPatienttest({patient_id:selectedPatient,test_id:selectedTest})
         : setError('Select both fields!')
       }
       setOpen(true);
@@ -124,7 +115,7 @@ const TestOrder = () => {
         labelId="label"
         id="demo-simple-select"
         value={selectedPatient}
-        label="select patient"
+        label="Select Patient"
         onChange={handleChangePatient}
       >
         {patients.map((patient,key)=>{
@@ -132,13 +123,13 @@ const TestOrder = () => {
         })}
       </Select>
       </FormControl>
-
-      <FormControl fullWidth style={{margin:'20px 0 0 0 '}}>
       
+      <FormControl fullWidth style={{margin:'20px 0 0 0 '}}>
       {agree=="true" ?<>
       <InputLabel id="label2">Select Test</InputLabel>
       <Select
       labelId="label2"
+      label="Select Test"
       id="demo-simple-select"
       value={selectedTest}
       onChange={handleChangeProject}

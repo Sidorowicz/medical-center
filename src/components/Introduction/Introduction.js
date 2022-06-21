@@ -54,7 +54,7 @@ const Introduction = () => {
     <Grid item xs={9}>
     <List >
             <ListItem>
-            1.Change JSON-server for real backend that would allow to get real test,patients and other names instead od id's
+            1.Change JSON-server for real backend that would allow to get real test,patients and other names instead od id's. (inner joins etc)
             </ListItem>
             <ListItem>
             2.Redo DB, add more possible results to test than true and false
@@ -75,16 +75,13 @@ const Introduction = () => {
     <Grid item xs={9}>
     <List >
             <ListItem>
-            1.Only patient form actually modify database records.
+            <s>1.Only patient form actually modify database records.</s>
             </ListItem>
             <ListItem>
-            2.Multiple fetchings, change to passing down array and function instead of components GETing them themselves, maybe use redux/context
+            <s>2.Multiple fetchings, change to passing down array and function instead of components GETing them themselves, maybe use redux/context</s>
             </ListItem>
             <ListItem>
-            3.Cannot display data from multiple tables in JSON-server joined together, therefore only ids are displayed as data in multiple tables
-            </ListItem>
-            <ListItem>
-            4.Cannot display data from multiple tables in JSON-server joined together 
+            3.Cannot display data from multiple tables in JSON-server joined together (as single table i could join two states but that would be pointless when i could just form a query)
             </ListItem>
         </List>
     </Grid>

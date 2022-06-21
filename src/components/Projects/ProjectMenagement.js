@@ -28,7 +28,7 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-
+import { addProject,deleteProject,modifyProject } from '../../api/projectapi';
 const ProjectMenagement = () => {
     const axios = require('axios');
     const [columns] = useState([
@@ -53,33 +53,30 @@ const ProjectMenagement = () => {
     },[])
 
 
+       
+    const catchData=()=>{
+      axios.get(`http://localhost:5000/projects`)
+        .then(res => {
+          setRows( res.data);
+        })
+        .catch(error => {
+        console.log(error);
+      });
+    }
+    
     const commitChanges = ({ added, changed, deleted }) => {
-      let changedRows;
       if (added) {
-        const startingAddedId = rows.length > 0 ? rows[rows.length - 1].id + 1 : 0;
-        changedRows = [
-          ...rows,
-          ...added.map((row, index) => ({
-            id: startingAddedId + index,
-            ...row,
-          })),
-        ];
-        setOpen(true)
-        setMessage("Succesfully added row")
-        console.log(added)
+       addProject(Object.values(added)[0])
       }
       if (changed) {
-        changedRows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
-        setOpen(true)
-        setMessage("Succesfully changed row")
+       const changedData = Object.entries(changed)[0]
+        modifyProject(changedData[1],changedData[0])
       }
       if (deleted) {
-        const deletedSet = new Set(deleted);
-        changedRows = rows.filter(row => !deletedSet.has(row.id));
-        setMessage("Succesfully deleted row")
+        deleteProject(deleted[0])
       }
-      setRows(changedRows);
       setOpen(true);
+      catchData()
     };
     
   return (

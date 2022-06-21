@@ -98,49 +98,19 @@ const ProjectDetails = () => {
                 })}
             </Select>
       </FormControl>
-
-
-      {/* { step==true ?
-        <Paper>
-      <Grid
-        rows={ptests}
-        columns={columns}
-      >
-        <PagingState
-          defaultCurrentPage={0}
-          pageSize={10}
-        />
-        <FilteringState
-          filters={filters}
-          onFiltersChange={setFilters}
-        />
-        <IntegratedFiltering />
-        <SortingState
-          defaultSorting={[{ columnName: 'Name', direction: 'asc' }]}
-        />
-        <IntegratedSorting />
-        <IntegratedPaging />
-        <Table />
-        <TableHeaderRow showSortingControls/>
-        <TableFilterRow />
-        <PagingPanel />
-      </Grid>
-    </Paper>
-      :null} */}
-      
-<div >
-<Button disabled style={{color:"black",width:"50vw"}}>Patient ID</Button><Button style={{width:"40vw",color:"black"}} disabled>Allows tests</Button>
-    {ptests.map((p)=>{
-      return (
-      <div style={{width:"100%"}}>
-        <Button disabled style={{color:"black",width:"50vw"}}>{p.patient_id} </Button>
-        {p.agree=="true" ? 
-        <Button style={{backgroundColor:'green',color:"white",width:"40vw"}} disabled>Agreed</Button> :
-        <Button style={{backgroundColor:'red',color:"black",width:"40vw"}} disabled>Not Agreed</Button>}
-        </div>
-      )
-    })}
-</div>
+      <div >
+      <Button disabled style={{color:"black",width:"50vw"}}>Patient ID</Button><Button style={{width:"40vw",color:"black"}} disabled>Allows tests</Button>
+          {ptests.map((p)=>{
+            return (
+            <div style={{width:"100%"}}>
+              <Button disabled style={{color:"black",width:"50vw"}}>{p.patient_id} </Button>
+              {p.agree=="true" ? 
+              <Button style={{backgroundColor:'green',color:"white",width:"40vw"}} disabled>Agreed</Button> :
+              <Button style={{backgroundColor:'red',color:"black",width:"40vw"}} disabled>Not Agreed</Button>}
+              </div>
+            )
+          })}
+      </div>
 
     </div>
   )

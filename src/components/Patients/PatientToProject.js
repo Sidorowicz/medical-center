@@ -1,55 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import Paper from '@mui/material/Paper';
-import { EditingState } from '@devexpress/dx-react-grid';
-import {
-  Grid,
-  Table,
-  TableHeaderRow,
-  TableEditRow,
-  TableEditColumn,
-  TableFilterRow,
-  PagingPanel,
-} from '@devexpress/dx-react-grid-material-ui';
-import {
-  PagingState,
-  IntegratedPaging,
-} from '@devexpress/dx-react-grid';
-import {
-  FilteringState,
-  IntegratedFiltering,
-} from '@devexpress/dx-react-grid';
-import {
-  SortingState,
-  IntegratedSorting,
-} from '@devexpress/dx-react-grid';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import { addPatientproject } from '../../api/patientproject';
 const ProjectMenagement = () => {
     const axios = require('axios');
     const [open, setOpen] = useState(false);
-    const [columns] = useState([
-        { name: 'id', title: 'Id' },
-        { name: 'patient_name', title: 'patient_name' },
-        { name: 'project_name', title: 'project_name' },
-        { name: 'agree',type:'boolean', title: 'agree' },
-      ]);
       const [selectedPatient, setPatient] = useState();
       const [selectedProject, setProject] = useState();
       const [patients, setPatients] = useState([]);
       const [projects, setProjects] = useState([]);
       const [error,setError]=useState('')
       const [ptp, setPtp] = useState([]);
-      const getRowId = row => row.id;
-      const [filters, setFilters] = useState([{ columnName: '', value: '' }]);
 
       useEffect(()=>{
             axios.get(`http://localhost:5000/patientproject`)
@@ -83,17 +51,7 @@ const ProjectMenagement = () => {
       setProject(event.target.value);
     };
     const handleSubmit = (event) => {
-      {selectedProject && selectedPatient ? 
-        axios.post('http://localhost:5000/patientproject', {
-          patient_id:selectedPatient,
-          project_id:selectedProject,
-          agree:"false"
-        }).then(resp => {
-            console.log(resp.data);
-        }).catch(error => {
-            console.log(error);
-            setOpen(false);
-        })
+      {selectedProject && selectedPatient ? addPatientproject({patient_id:selectedPatient,project_id:selectedProject,agree:"false"})
         : setError('Select both fields!')
       }
       setOpen(true);

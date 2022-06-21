@@ -29,7 +29,7 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-
+import { deletePatientproject,addPatientproject,modifyPatientproject } from '../../api/patientproject';
 const PatientsInProjects = () => {
     const axios = require('axios');
     const [columns] = useState([
@@ -67,78 +67,29 @@ const PatientsInProjects = () => {
         });
     },[])
 
-
-    
-
-    const addPatient=(added)=>{
-      console.log(added)
-      axios.post('http://localhost:5000/patientproject', {
-        name:added[0].name,
-        gender:added[0].gender,
-        email:added[0].email,
-        address:added[0].address
-      }).then(resp => {
-          console.log(resp.data);
-      }).catch(error => {
+      const catchData=()=>{
+        axios.get(`http://localhost:5000/patientproject`)
+          .then(res => {
+            setRows( res.data);
+          })
+          .catch(error => {
           console.log(error);
-      });
-    }
-
-    const deletePatient=(deleted)=>{
-      axios.delete(`http://localhost:5000/patientproject/${deleted[0]}/`)
-      .then(resp => {
-          console.log(resp.data)
-      }).catch(error => {
-          console.log(error);
-      });
-    }
-
-    const modifyPatient=(changed)=>{
-      let ids =  Object.keys(changed)[0]
-      axios.put(`http://localhost:5000/patientproject/${ids}/`, {
-        name:Object.values(changed)[0].name,
-        gender:Object.values(changed)[0].gender,
-        email:Object.values(changed)[0].email,
-        address:Object.values(changed)[0].address
-      }).then(resp => {
-
-          console.log(resp.data);
-      }).catch(error => {
-
-          console.log(error);
-      });
-    }
-
+        });
+      }
+      
       const commitChanges = ({ added, changed, deleted }) => {
-        let changedRows;
         if (added) {
-          addPatient(added)
-          const startingAddedId = rows.length > 0 ? rows[rows.length - 1].id + 1 : 0;
-          changedRows = [
-            ...rows,
-            ...added.map((row, index) => ({
-              id: startingAddedId + index,
-              ...row,
-            })),
-          ];
-          setOpen(true)
-          setMessage("Succesfully added row")
-          console.log(added)
+          addPatientproject(Object.values(added)[0])
         }
         if (changed) {
-          modifyPatient(changed)
-          changedRows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
-          setOpen(true)
-          setMessage("Succesfully changed row")
+         const changedData = Object.entries(changed)[0]
+         modifyPatientproject(changedData[1],changedData[0])
         }
         if (deleted) {
-          deletePatient(deleted)
-          const deletedSet = new Set(deleted);
-          changedRows = rows.filter(row => !deletedSet.has(row.id));
-          setMessage("Succesfully deleted row")
+          deletePatientproject(deleted[0])
         }
-        setRows(changedRows);
         setOpen(true);
+        catchData()
       };
     
   return (
