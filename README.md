@@ -1,5 +1,6 @@
 <h1>#Important Notes:</h1>
 
+
 1.No redux or context was used yet.<br/>
 2.No login or register form is included.<br/>
 3.Statistic data is mostly true/false due to my lack of medical test knowledge.<br/>
@@ -8,6 +9,8 @@
 
 <h1>#Installation:</h1>
 
+
 1.Inside project folder run `npm i` and wait for it to finish <br/>
-2.Run `npm run server (it takes up 403 port) <br/>
+2.Run `npm run server` (it takes up 403 port) <br/>
 3.Run `npm start` <br/>
+ 
