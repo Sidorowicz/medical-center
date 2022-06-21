@@ -34,7 +34,7 @@ const PatientTable = () => {
   ]);
   const [patient,setPatient]=useState([])
     useEffect(()=>{
-        axios.get(`http://localhost:5000/patients`)
+        axios.get(`http://localhost:403/patients`)
         .then(res => {
           setPatient( res.data);
         })

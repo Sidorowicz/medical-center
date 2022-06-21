@@ -6,10 +6,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PatientToProject from '../Patients/PatientToProject';
 import PatientTable from '../Patients/PatientTable';
 import ProjectTable from '../Projects/ProjectTable';
-import { countBy,groupBy} from 'lodash';
+import { groupBy} from 'lodash';
 import { Box, Divider, Grid } from '@mui/material';
 import TestsTable from '../Tests/TestsTable';
 import Menu from '../Menu/Menu';
@@ -27,7 +26,7 @@ const Overwiev = () => {
   const [testscounter,setTestsCounter]=useState(0)
 const [isLoading,setLoading]=useState(true)
 useEffect(()=>{ 
-  axios.get(`http://localhost:5000/patients`)
+  axios.get(`http://localhost:403/patients`)
   .then(res => {
     setPatients( res.data);
   }) 
@@ -35,7 +34,7 @@ useEffect(()=>{
   console.log(error); 
   });
   
-  axios.get(`http://localhost:5000/projects`)
+  axios.get(`http://localhost:403/projects`)
   .then(res => {
     setProjects( res.data);
   })
@@ -43,7 +42,7 @@ useEffect(()=>{
   console.log(error);
   });
 
-  axios.get(`http://localhost:5000/tests`)
+  axios.get(`http://localhost:403/tests`)
   .then(res => {
     setTests( res.data);
     setLoading(false)
@@ -51,7 +50,7 @@ useEffect(()=>{
   .catch(error => {
   console.log(error);
   });
-  axios.get(`http://localhost:5000/patienttest`)
+  axios.get(`http://localhost:403/patienttest`)
   .then(res => {
     setPTest( res.data);
     setLoading(false)

@@ -23,11 +23,9 @@ import {
   IntegratedSorting,
 } from '@devexpress/dx-react-grid';
 
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { addTest,deleteTest,modifyTest } from '../../api/testapi';
 const TestMenagement = () => {
@@ -44,7 +42,7 @@ const TestMenagement = () => {
       const getRowId = row => row.id;
       const [filters, setFilters] = useState([{ columnName: '', value: '' }]);
       useEffect(()=>{
-        axios.get(`http://localhost:5000/patienttest`)
+        axios.get(`http://localhost:403/patienttest`)
         .then(res => {
           setRows( res.data);
         })
@@ -55,7 +53,7 @@ const TestMenagement = () => {
 
 
     const catchData=()=>{
-      axios.get(`http://localhost:5000/tests`)
+      axios.get(`http://localhost:403/tests`)
         .then(res => {
           setRows( res.data);
         })

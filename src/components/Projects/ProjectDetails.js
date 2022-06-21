@@ -4,28 +4,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Paper from '@mui/material/Paper';
-import {
-  PagingState,
-  IntegratedPaging,
-} from '@devexpress/dx-react-grid';
-import {
-  Grid,
-  Table,
-  TableHeaderRow,
-  TableFilterRow,
-  PagingPanel,
-} from '@devexpress/dx-react-grid-material-ui';
-import {
-  FilteringState,
-  IntegratedFiltering,
-} from '@devexpress/dx-react-grid';
-import {
-  SortingState,
-  IntegratedSorting,
-} from '@devexpress/dx-react-grid';
-
-
 const ProjectDetails = () => {
     const axios = require('axios');
     const [columns] = useState([
@@ -37,18 +15,16 @@ const ProjectDetails = () => {
       const [projects, setProjects] = useState([]);
       const [patients, setPatients] = useState([]);
       const [ptests, setPTests] = useState([]);
-      const getRowId = row => row.id;
-      const [filters, setFilters] = useState([{ columnName: '', value: '' }]);
 
       useEffect(()=>{
-            axios.get(`http://localhost:5000/projects`)
+            axios.get(`http://localhost:403/projects`)
             .then(res => {
               setProjects( res.data);
             })
             .catch(error => {
             console.log(error);
         });
-        axios.get(`http://localhost:5000/patients`)
+        axios.get(`http://localhost:403/patients`)
         .then(res => {
           setPatients( res.data);
         })
@@ -60,7 +36,7 @@ const ProjectDetails = () => {
     const handleChangeProject = (event) => {
         setProject(event.target.value);
         console.log("selectedproject"+event.target.value)
-        axios.get(`http://localhost:5000/patientproject?project_id=${event.target.value}`)
+        axios.get(`http://localhost:403/patientproject?project_id=${event.target.value}`)
                 .then(res => {
                     setPTests( res.data);
                     setStep(true)

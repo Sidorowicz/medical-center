@@ -1,13 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Dialog, Grid } from '@mui/material';
-import DialogTitle from '@mui/material/DialogTitle';
+import { Dialog } from '@mui/material';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import "./Menu.css"
-import BloodtypeIcon from '@mui/icons-material/Bloodtype';
-import { fontSize } from '@mui/system';
 
 const Menu = () => {
     const [open, setOpen] = React.useState(false);

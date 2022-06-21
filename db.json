@@ -1249,10 +1249,6 @@
   ],
   "tests": [
     {
-      "id": 1,
-      "test_name": "Zolpidem Tartrate"
-    },
-    {
       "id": 2,
       "test_name": "Horse Fly"
     },

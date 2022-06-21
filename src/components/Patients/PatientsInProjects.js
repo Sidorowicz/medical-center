@@ -22,12 +22,9 @@ import {
   SortingState,
   IntegratedSorting,
 } from '@devexpress/dx-react-grid';
-
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { deletePatientproject,addPatientproject,modifyPatientproject } from '../../api/patientproject';
 const PatientsInProjects = () => {
@@ -51,14 +48,14 @@ const PatientsInProjects = () => {
 
 
       useEffect(()=>{
-        axios.get(`http://localhost:5000/patientproject`)
+        axios.get(`http://localhost:403/patientproject`)
             .then(res => {
               setRows( res.data);
             })
             .catch(error => {
             console.log(error);
         });
-        axios.get(`http://localhost:5000/patienttest`)
+        axios.get(`http://localhost:403/patienttest`)
             .then(res => {
               setRows2( res.data);
             })
@@ -68,7 +65,7 @@ const PatientsInProjects = () => {
     },[])
 
       const catchData=()=>{
-        axios.get(`http://localhost:5000/patientproject`)
+        axios.get(`http://localhost:403/patientproject`)
           .then(res => {
             setRows( res.data);
           })

@@ -20,21 +20,21 @@ const ProjectMenagement = () => {
       const [ptp, setPtp] = useState([]);
 
       useEffect(()=>{
-            axios.get(`http://localhost:5000/patientproject`)
+            axios.get(`http://localhost:403/patientproject`)
                 .then(res => {
                   setPtp( res.data);
                 })
                 .catch(error => {
                 console.log(error);
             });
-            axios.get(`http://localhost:5000/patients`)
+            axios.get(`http://localhost:403/patients`)
                 .then(res => {
                   setPatients( res.data);
                 })
                 .catch(error => {
                 console.log(error);
             });
-            axios.get(`http://localhost:5000/projects`)
+            axios.get(`http://localhost:403/projects`)
                 .then(res => {
                   setProjects( res.data);
                 })

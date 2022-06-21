@@ -22,11 +22,9 @@ import {
   SortingState,
   IntegratedSorting,
 } from '@devexpress/dx-react-grid';
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { addProject,deleteProject,modifyProject } from '../../api/projectapi';
 const ProjectMenagement = () => {
@@ -43,7 +41,7 @@ const ProjectMenagement = () => {
       const getRowId = row => row.id;
       const [filters, setFilters] = useState([{ columnName: '', value: '' }]);
       useEffect(()=>{
-        axios.get(`http://localhost:5000/projects`)
+        axios.get(`http://localhost:403/projects`)
         .then(res => {
           setRows( res.data);
         })
@@ -55,7 +53,7 @@ const ProjectMenagement = () => {
 
        
     const catchData=()=>{
-      axios.get(`http://localhost:5000/projects`)
+      axios.get(`http://localhost:403/projects`)
         .then(res => {
           setRows( res.data);
         })

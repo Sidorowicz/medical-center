@@ -22,12 +22,9 @@ import {
   SortingState,
   IntegratedSorting,
 } from '@devexpress/dx-react-grid';
-
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
 const TestsMenagement = () => {
@@ -41,7 +38,7 @@ const TestsMenagement = () => {
       const getRowId = row => row.id;
       const [filters, setFilters] = useState([{ columnName: '', value: '' }]);
       useEffect(()=>{
-        axios.get(`http://localhost:5000/tests`)
+        axios.get(`http://localhost:403/tests`)
         .then(res => {
           setRows( res.data);
         })
@@ -55,7 +52,7 @@ const TestsMenagement = () => {
 
     const addPatient=(added)=>{
       console.log(added)
-      axios.post('http://localhost:5000/tests', {
+      axios.post('http://localhost:403/tests', {
         name:added[0].name,
         gender:added[0].gender,
         email:added[0].email,
@@ -68,7 +65,7 @@ const TestsMenagement = () => {
     }
 
     const deletePatient=(deleted)=>{
-      axios.delete(`http://localhost:5000/tests/${deleted[0]}/`)
+      axios.delete(`http://localhost:403/tests/${deleted[0]}/`)
       .then(resp => {
           console.log(resp.data)
       }).catch(error => {
@@ -78,7 +75,7 @@ const TestsMenagement = () => {
 
     const modifyPatient=(changed)=>{
       let ids =  Object.keys(changed)[0]
-      axios.put(`http://localhost:5000/tests/${ids}/`, {
+      axios.put(`http://localhost:403/tests/${ids}/`, {
         name:Object.values(changed)[0].test_name,
       }).then(resp => {
 

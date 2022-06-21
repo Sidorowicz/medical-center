@@ -1,9 +1,5 @@
-import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 import { useState } from 'react';
 import { Paper } from '@mui/material';

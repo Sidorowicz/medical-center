@@ -34,7 +34,7 @@ const TestsTable = () => {
   ]);
   const [tests,setTests]=useState([])
     useEffect(()=>{
-        axios.get(`http://localhost:5000/patienttest`)
+        axios.get(`http://localhost:403/patienttest`)
         .then(res => {
             setTests( res.data);
         })

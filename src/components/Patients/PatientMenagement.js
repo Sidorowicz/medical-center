@@ -22,12 +22,9 @@ import {
   SortingState,
   IntegratedSorting,
 } from '@devexpress/dx-react-grid';
-
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { addPatient,deletePatient,modifyPatient } from '../../api/patientapi';
 const PatientMenagement = () => {
@@ -49,7 +46,7 @@ const PatientMenagement = () => {
 
 
     const catchData=()=>{
-      axios.get(`http://localhost:5000/patients`)
+      axios.get(`http://localhost:403/patients`)
         .then(res => {
           setRows( res.data);
         })
